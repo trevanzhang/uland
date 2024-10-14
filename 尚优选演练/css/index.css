@@ -1,0 +1,84 @@
+.wrapper #header .headTop {
+  background-color: #eaeaea;
+  height: 30px;
+}
+.wrapper #header .headTop .headTopMain {
+  width: 1200px;
+  margin: 0 auto;
+  line-height: 30px;
+}
+.wrapper #header .headTop .headTopMain:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.wrapper #header .headTop .headTopMain .left h5 {
+  float: left;
+  margin-left: 5px;
+}
+.wrapper #header .headTop .headTopMain .left p {
+  float: left;
+  margin-left: 5px;
+}
+.wrapper #header .headTop .headTopMain .left p a:first-child {
+  border-right: 1px solid #b3aeae;
+  margin-right: 2px;
+  padding-right: 5px;
+}
+.wrapper #header .headTop .headTopMain .right {
+  float: right;
+  margin-right: 5px;
+}
+.wrapper #header .headTop .headTopMain .right nav {
+  font-size: 0px;
+}
+.wrapper #header .headTop .headTopMain .right nav a {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #b3aeae;
+  font-size: 12px;
+}
+.wrapper #header .headTop .headTopMain .right nav a:last-child {
+  border-right: none;
+  margin-right: 0px;
+  padding-right: 0px;
+}
+.wrapper #header .headBottom .headBottomMain {
+  width: 1200px;
+  margin: 0 auto;
+}
+.wrapper #header .headBottom .headBottomMain:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.wrapper #header .headBottom .headBottomMain .logo {
+  float: left;
+}
+.wrapper #header .headBottom .headBottomMain .logo a img {
+  width: 175px;
+  height: 56px;
+  margin: 25px 45px;
+}
+.wrapper #header .headBottom .headBottomMain .search {
+  float: right;
+  margin-top: 35px;
+}
+.wrapper #header .headBottom .headBottomMain .search input:first-child {
+  box-sizing: border-box;
+  width: 490px;
+  height: 32px;
+  padding: 0 4px;
+  border: 3px solid #ea4a36;
+  float: left;
+}
+.wrapper #header .headBottom .headBottomMain .search input:last-child {
+  width: 68px;
+  height: 32px;
+  background-color: #ea4a36;
+  color: #fff;
+  border: none;
+}
+.wrapper #header .headBottom .headBottomMain .search input::-webkit-input-placeholder {
+  color: yellowgreen;
+}
