@@ -49,6 +49,14 @@ window.onload = function () {
                 bigPic.appendChild(bigImg);
                 smallPic.appendChild(maskDiv);
                 leftTop.appendChild(bigPic);
+                // 设置移动效果
+                smallPic.onmousemove = function (event) {
+                    const left = event.clientX - smallPic.getBoundingClientRect().left - maskDiv.offsetWidth / 2;
+                    const top = event.clientY - smallPic.getBoundingClientRect().top - maskDiv.offsetHeight / 2;
+                    maskDiv.style.left = left + 'px';
+                    maskDiv.style.top = top + 'px';
+                }
+                // 设置移除效果
                 smallPic.onmouseleave = function () {
                     smallPic.removeChild(maskDiv)
                     leftTop.removeChild(bigPic)
