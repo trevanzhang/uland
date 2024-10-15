@@ -186,6 +186,71 @@
                 }
             }
 
+            // 路径导航结束
+            // 中间区域开始
+            #center {
+                margin: 5px 0 15px;
+                .clearfix();
+
+                // 左侧放大镜开始
+                #left {
+                    width: 400px;
+                    float: left;
+
+                    // 上面
+                    #leftTop {
+                        width: 400px;
+                        position: relative;
+
+                        // 小图框
+                        #smallPic {
+                            width: 400px;
+                            height: 400px;
+                            border: 1px solid #dfdfdf;
+                            position: relative;
+
+                            img {}
+
+                            // 蒙版元素
+                            .mask {
+                                width: 200px;
+                                height: 200px;
+                                background-color: rgb(255, 255, 255, .5);
+                                border: 1px solid #ddd;
+                                position: absolute;
+                                left: 0px;
+                                top: 0px;
+
+                            }
+                        }
+
+                        // 大图框
+                        #bigPic {
+                            width: 400px;
+                            height: 400px;
+                            border: 1px solid #dfdfdf;
+                            left: 420px;
+                            top: 0px;
+                            position: absolute;
+                            overflow: hidden;
+
+                            img {
+                                width: 800px;
+                                height: 800px;
+                            }
+                        }
+
+                    }
+
+                }
+
+
+
+
+            }
+
+            // 中间区域开始
+
         }
 
     }
