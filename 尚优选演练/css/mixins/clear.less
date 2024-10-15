@@ -1,7 +1,15 @@
+// 清除浮动
 .clearfix() {
     &:after {
         content: "";
         display: block;
         clear: both;
     }
+}
+
+// 文字溢出省略号
+.nowrap_ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
