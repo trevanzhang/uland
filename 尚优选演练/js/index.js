@@ -1,4 +1,8 @@
 window.onload = function () {
+    // 定义缩略图下标变量
+    let bigImgIndex = 0;
+    const imagesSrc = goodData.imagessrc;
+
     navPathDataBind()
     // 动态路径渲染
     function navPathDataBind() {
@@ -49,7 +53,7 @@ window.onload = function () {
             bigPic.id = 'bigPic';
             // 创建大图片元素
             const bigImg = document.createElement('img')
-            bigImg.src = 'images/b1.png';
+            bigImg.src = imagesSrc[bigImgIndex].b;
             bigPic.appendChild(bigImg);
             smallPic.appendChild(maskDiv);
             leftTop.appendChild(bigPic);
@@ -73,7 +77,7 @@ window.onload = function () {
                 maskDiv.style.top = top + 'px';
                 // 控制大图移动
                 let scale = (smallPic.clientWidth - maskDiv.offsetWidth) / (bigImg.offsetWidth - bigPic.clientWidth);
-                console.log(scale)
+                // console.log(scale)
                 bigImg.style.left = -left / scale + 'px';
                 bigImg.style.top = -top / scale + 'px';
             }
@@ -95,7 +99,6 @@ window.onload = function () {
          */
         const ul = document.querySelector('#piclist ul');
         const imageSrc = goodData.imagessrc;
-        console.log(imageSrc)
         for (let i = 0; i < imageSrc.length; i++) {
             const li = document.createElement('li');
             const img = document.createElement('img');
@@ -104,6 +107,24 @@ window.onload = function () {
             ul.appendChild(li);
         }
 
+        thumbnailClick();
+        //点击缩略图的效果
+        function thumbnailClick() {
+            // 获取小图框元素
+            const smallPic_img = document.querySelector('#smallPic img');
+            // 获取所有li元素
+            const lis = document.querySelectorAll('#piclist ul li');
+            smallPic_img.src = imageSrc[0].s;
+            // 遍历所有li元素
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].index = i; // 添加自定义属性，此处关键，异步数据无法获取下标，需要手动添加
+                lis[i].onclick = function () {
+                    bigImgIndex = this.index
+                    console.log(this.index)
+                    // 获取当前点击的图片地址
+                    smallPic_img.src = imageSrc[this.index].s;
+                }
+            }
+        }
     }
-
 }
