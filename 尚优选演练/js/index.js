@@ -51,8 +51,20 @@ window.onload = function () {
                 leftTop.appendChild(bigPic);
                 // 设置移动效果
                 smallPic.onmousemove = function (event) {
-                    const left = event.clientX - smallPic.getBoundingClientRect().left - maskDiv.offsetWidth / 2;
-                    const top = event.clientY - smallPic.getBoundingClientRect().top - maskDiv.offsetHeight / 2;
+                    let left = event.clientX - smallPic.getBoundingClientRect().left - maskDiv.offsetWidth / 2;
+                    let top = event.clientY - smallPic.getBoundingClientRect().top - maskDiv.offsetHeight / 2;
+                    // 判断
+                    if (left < 0) {
+                        left = 0
+                    } else if (left > smallPic.offsetWidth - maskDiv.offsetWidth) {
+                        left = smallPic.offsetWidth - maskDiv.offsetWidth
+                    }
+
+                    if (top < 0) {
+                        top = 0
+                    } else if (top > smallPic.offsetHeight - maskDiv.offsetHeight) {
+                        top = smallPic.offsetHeight - maskDiv.offsetHeight
+                    }
                     maskDiv.style.left = left + 'px';
                     maskDiv.style.top = top + 'px';
                 }
@@ -62,9 +74,9 @@ window.onload = function () {
                     leftTop.removeChild(bigPic)
                 }
             }
-
         }
 
-
     }
+
+
 }

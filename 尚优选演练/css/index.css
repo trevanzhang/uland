@@ -158,6 +158,7 @@
   width: 200px;
   height: 200px;
   background-color: #ffffff;
+  opacity: 0.5;
   border: 1px solid #ddd;
   position: absolute;
   left: 0px;
