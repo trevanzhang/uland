@@ -120,11 +120,41 @@ window.onload = function () {
                 lis[i].index = i; // 添加自定义属性，此处关键，异步数据无法获取下标，需要手动添加
                 lis[i].onclick = function () {
                     bigImgIndex = this.index
-                    console.log(this.index)
                     // 获取当前点击的图片地址
                     smallPic_img.src = imageSrc[this.index].s;
                 }
             }
+        }
+    }
+
+    thumbnailBtnClick()
+    // 缩略图按钮事件
+    function thumbnailBtnClick() {
+        const leftBtn = document.querySelector('.wrapper #content .contentMain #center #left #leftBottom a.prev');
+        const rightBtn = document.querySelector('.wrapper #content .contentMain #center #left #leftBottom a.next');
+        const piclist = document.querySelector('#piclist');
+        const ul = document.querySelector('#piclist ul');
+        const lis = document.querySelectorAll('#piclist ul li');
+
+        let start = 0;
+        const step = (lis[0].offsetWidth + 20) * 2;
+        const endPostion = (lis.length - 5) * (lis[0].offsetWidth + 20);
+
+        leftBtn.onclick = function () {
+            // 判断是否可以移动
+            if (start == 0) {
+                return
+            }
+            start -= step;
+            ul.style.left = -start + 'px';
+        }
+        rightBtn.onclick = function () {
+            // 判断是否可以移动
+            if (start == endPostion) {
+                return
+            }
+            start += step;
+            ul.style.left = -start + 'px';
         }
     }
 }
