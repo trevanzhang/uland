@@ -1,5 +1,6 @@
 window.onload = function () {
     navPathDataBind()
+    // 动态路径渲染
     function navPathDataBind() {
         // 获取元素
         var navPath = document.querySelector('.wrapper #content .contentMain #navPath');
@@ -21,67 +22,88 @@ window.onload = function () {
             }
         }
 
-        // 放大镜效果
-        bigGlassBind()
-        function bigGlassBind() {
-            /**
-             * 思路：
-             * 1、获取小图框元素对象，并且设置移入事件(onMouseenter)
-             * 2、动态创建蒙版元素以及大图框和大图片元素
-             * 3、移出时需要移除蒙版元素和大图框及图片
-             */
-            // 获取小图框元素
-            const smallPic = document.querySelector('#smallPic');
-            const leftTop = document.querySelector('#leftTop')
-            // 设置移入事件
-            // smallPic.addEventListener('mouseenter', fun)
-            // console.log(smallPic)
-            smallPic.onmouseenter = function () {
-                // 创建蒙版元素
-                const maskDiv = document.createElement('div');
-                maskDiv.className = 'mask';
-                // 创建大图框元素
-                const bigPic = document.createElement('div');
-                bigPic.id = 'bigPic';
-                // 创建大图片元素
-                const bigImg = document.createElement('img')
-                bigImg.src = 'images/b1.png';
-                bigPic.appendChild(bigImg);
-                smallPic.appendChild(maskDiv);
-                leftTop.appendChild(bigPic);
-                // 设置移动效果
-                smallPic.onmousemove = function (event) {
-                    let left = event.clientX - smallPic.getBoundingClientRect().left - maskDiv.offsetWidth / 2;
-                    let top = event.clientY - smallPic.getBoundingClientRect().top - maskDiv.offsetHeight / 2;
-                    // 判断
-                    if (left < 0) {
-                        left = 0
-                    } else if (left > smallPic.offsetWidth - maskDiv.offsetWidth) {
-                        left = smallPic.offsetWidth - maskDiv.offsetWidth
-                    }
-
-                    if (top < 0) {
-                        top = 0
-                    } else if (top > smallPic.offsetHeight - maskDiv.offsetHeight) {
-                        top = smallPic.offsetHeight - maskDiv.offsetHeight
-                    }
-                    maskDiv.style.left = left + 'px';
-                    maskDiv.style.top = top + 'px';
-                    // 控制大图移动
-                    let scale = (smallPic.clientWidth - maskDiv.offsetWidth) / (bigImg.offsetWidth - bigPic.clientWidth);
-                    console.log(scale)
-                    bigImg.style.left = -left / scale + 'px';
-                    bigImg.style.top = -top / scale + 'px';
-                }
-                // 设置移除效果
-                smallPic.onmouseleave = function () {
-                    smallPic.removeChild(maskDiv)
-                    leftTop.removeChild(bigPic)
-                }
-            }
-        }
 
     }
 
+    // 放大镜效果
+    bigGlassBind()
+    function bigGlassBind() {
+        /**
+         * 思路：
+         * 1、获取小图框元素对象，并且设置移入事件(onMouseenter)
+         * 2、动态创建蒙版元素以及大图框和大图片元素
+         * 3、移出时需要移除蒙版元素和大图框及图片
+         */
+        // 获取小图框元素
+        const smallPic = document.querySelector('#smallPic');
+        const leftTop = document.querySelector('#leftTop')
+        // 设置移入事件
+        // smallPic.addEventListener('mouseenter', fun)
+        // console.log(smallPic)
+        smallPic.onmouseenter = function () {
+            // 创建蒙版元素
+            const maskDiv = document.createElement('div');
+            maskDiv.className = 'mask';
+            // 创建大图框元素
+            const bigPic = document.createElement('div');
+            bigPic.id = 'bigPic';
+            // 创建大图片元素
+            const bigImg = document.createElement('img')
+            bigImg.src = 'images/b1.png';
+            bigPic.appendChild(bigImg);
+            smallPic.appendChild(maskDiv);
+            leftTop.appendChild(bigPic);
+            // 设置移动效果
+            smallPic.onmousemove = function (event) {
+                let left = event.clientX - smallPic.getBoundingClientRect().left - maskDiv.offsetWidth / 2;
+                let top = event.clientY - smallPic.getBoundingClientRect().top - maskDiv.offsetHeight / 2;
+                // 判断
+                if (left < 0) {
+                    left = 0
+                } else if (left > smallPic.offsetWidth - maskDiv.offsetWidth) {
+                    left = smallPic.offsetWidth - maskDiv.offsetWidth
+                }
+
+                if (top < 0) {
+                    top = 0
+                } else if (top > smallPic.offsetHeight - maskDiv.offsetHeight) {
+                    top = smallPic.offsetHeight - maskDiv.offsetHeight
+                }
+                maskDiv.style.left = left + 'px';
+                maskDiv.style.top = top + 'px';
+                // 控制大图移动
+                let scale = (smallPic.clientWidth - maskDiv.offsetWidth) / (bigImg.offsetWidth - bigPic.clientWidth);
+                console.log(scale)
+                bigImg.style.left = -left / scale + 'px';
+                bigImg.style.top = -top / scale + 'px';
+            }
+            // 设置移除效果
+            smallPic.onmouseleave = function () {
+                smallPic.removeChild(maskDiv)
+                leftTop.removeChild(bigPic)
+            }
+        }
+    }
+    // 缩略图渲染效果
+    thumbnailData();
+    function thumbnailData() {
+        /**
+         * 思路：
+         * 1、先获取piclist元素下的ul
+         * 2、再获取data.js里的数据
+         * 3、遍历数据，根据数组长度渲染元素
+         */
+        const ul = document.querySelector('#piclist ul');
+        const imageSrc = goodData.imagessrc;
+        console.log(imageSrc)
+        for (let i = 0; i < imageSrc.length; i++) {
+            const li = document.createElement('li');
+            const img = document.createElement('img');
+            img.src = imageSrc[i].s;
+            li.appendChild(img);
+            ul.appendChild(li);
+        }
+
+    }
 
 }
