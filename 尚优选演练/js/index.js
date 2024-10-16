@@ -67,6 +67,11 @@ window.onload = function () {
                     }
                     maskDiv.style.left = left + 'px';
                     maskDiv.style.top = top + 'px';
+                    // 控制大图移动
+                    let scale = (smallPic.clientWidth - maskDiv.offsetWidth) / (bigImg.offsetWidth - bigPic.clientWidth);
+                    console.log(scale)
+                    bigImg.style.left = -left / scale + 'px';
+                    bigImg.style.top = -top / scale + 'px';
                 }
                 // 设置移除效果
                 smallPic.onmouseleave = function () {
