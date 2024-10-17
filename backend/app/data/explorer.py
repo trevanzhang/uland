@@ -1,5 +1,7 @@
+from sqlite3 import IntegrityError
 from .init import conn, curs
 from model.explorer import Explorer
+from error import Missing, Duplicate
 
 curs.execute("""create table if not exists explorer (
     name TEXT PRIMARY KEY,
@@ -17,7 +19,10 @@ def get_one(name: str) -> Explorer | None:
     params = {"name": name}
     curs.execute(qry, params)
     row = curs.fetchone()
-    return row_to_model(row)
+    if row:
+        return row_to_model(row)
+    else:
+        raise Missing(f"No explorer with name {name}")
 
 def get_all() -> list[Explorer]:
     qry = "SELECT * FROM explorer"
@@ -31,7 +36,10 @@ def create(explorer: Explorer) -> Explorer:
     VALUES (:name, :country, :description)
     """
     params = model_to_dict(explorer)
-    curs.execute(qry, params)
+    try:
+        curs.execute(qry, params)
+    except  IntegrityError:
+        raise Duplicate(f"Explorer with name {explorer.name} already exists")   
     # conn.commit()
     return get_one(explorer.name)
 
